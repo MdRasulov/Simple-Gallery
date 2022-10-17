@@ -1,0 +1,56 @@
+.header {
+   background-image: url('../../assets/5.jpg');
+   width: 100vw;
+   height: 100vh;
+   background-size: cover;
+   background-position: center center;
+
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.header__search-bar {
+   display: flex;
+   position: relative;
+   background-color: #fff;
+   border: none;
+   font-size: 1rem;
+   border-radius: 1.2rem;
+   padding: 0.2rem;
+   width: min(60vw, 30rem);
+}
+
+.header__text {
+   max-width: 60%;
+   margin-inline: auto;
+}
+
+.header__text h1 {
+   font-size: 2.8rem;
+   text-align: center;
+}
+
+.header__search-bar input {
+   margin: 0.2rem;
+   width: 100%;
+   padding: 0.5rem 1.5rem;
+   border: none;
+}
+
+.header__search-bar input:focus {
+   outline: none;
+}
+
+.header__search-bar i:hover {
+   cursor: pointer;
+}
+
+.header__search-bar i > img {
+   position: absolute;
+   top: 6px;
+   right: 15px;
+
+   max-width: 2rem;
+}
