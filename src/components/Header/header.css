@@ -49,8 +49,8 @@
 
 .header__search-bar i > img {
    position: absolute;
-   top: 6px;
-   right: 15px;
+   top: 15%;
+   right: 3%;
 
-   max-width: 2rem;
+   width: min(5vw, 2rem);
 }
