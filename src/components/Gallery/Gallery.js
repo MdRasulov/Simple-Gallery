@@ -1,51 +1,17 @@
-import { useEffect, useState } from 'react';
-import './body.css';
+import { useState, useEffect } from 'react';
+import './gallery.css';
 
-const Body = () => {
+const Gallery = ({ fetch, items, loading, err }) => {
    // useEffect(() => {
    //    loadLatest();
    // }, []);
-
-   const [items, setItems] = useState([]);
-   const [loading, setLoading] = useState(true);
-   const [err, setErr] = useState(null);
 
    const [randomBtn, setRandomBtn] = useState(false);
    const [latestBtn, setLatestBtn] = useState(false);
    const [pageNumber, setPageNumber] = useState(1);
 
-   const fetchFunction = url => {
-      fetch(url)
-         .then(response => {
-            if (!response.ok) {
-               throw Error('Could not fetch the data from that resource ! =(');
-            }
-            return response.json();
-         })
-         .then(data => {
-            setItems([...items, ...data]);
-            setLoading(false);
-            setErr(null);
-         })
-         .catch(err => {
-            if (err.name !== 'AbortError') {
-               setErr(err.message);
-               setLoading(false);
-            }
-         });
-   };
-
-   // const searchFunction = () => {
-   //    fetchFunction(
-   //       `https://api.unsplash.com/photos/search/?client_id=${process.env.REACT_APP_API_KEY}&page=${pageNumber}&query=${inputValue}`
-   //    );
-
-   //    setPageNumber(pageNumber + 1);
-   //    inputState(true);
-   // };
-
    const loadRandom = () => {
-      fetchFunction(
+      fetch(
          `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_API_KEY}&count=30`
       );
 
@@ -54,7 +20,7 @@ const Body = () => {
    };
 
    const loadLatest = () => {
-      fetchFunction(
+      fetch(
          `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`
       );
 
@@ -113,4 +79,4 @@ const Body = () => {
    );
 };
 
-export default Body;
+export default Gallery;
