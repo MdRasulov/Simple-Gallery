@@ -14,14 +14,18 @@
 .body__button {
    margin: 1rem 10vw;
    font-size: 1.5rem;
+   padding: 0.5rem 0.8rem;
+   font-weight: 600;
    border: none;
    background: none;
    cursor: pointer;
-   transition: all 0.4s ease;
+   transition: all 0.3s ease;
 }
 
 .body__button:hover {
-   color: deeppink;
+   color: #fff;
+   background-color: black;
+   border-radius: 0.5rem;
 }
 
 .body__galary {
@@ -54,6 +58,7 @@
 .random__button {
    margin: 5rem auto;
    font-size: 1.2rem;
+   font-weight: 500;
    width: 15%;
 }
 
@@ -68,6 +73,12 @@
 }
 
 .random__button button:hover {
-   color: deeppink;
-   border: 1px solid deeppink;
+   color: #fff;
+   background-color: black;
+}
+
+.--active {
+   background-color: black;
+   color: #ffff;
+   border-radius: 0.5rem;
 }

@@ -1,20 +1,22 @@
 import './header.css';
 
 const Header = () => {
+   function handle() {
+      console.log('hi');
+   }
+
    return (
       <div className='header'>
          <div className='header__text'>
             <h1>Huge Collection of High Resolution Wallpapers</h1>
          </div>
          <div className='header__search-bar'>
-            <input type='text' placeholder='Search for images' />
-            <i
-               onClick={() => {
-                  console.log('hiiiii');
-               }}
-            >
-               <img src={require('../../assets/search-icon.png')} alt='' />
-            </i>
+            <form onSubmit={handle}>
+               <input type='text' placeholder='Search for images' />
+               <button type='submit' onClick={handle}>
+                  <img src={require('../../assets/search-icon.png')} alt='' />
+               </button>
+            </form>
          </div>
       </div>
    );

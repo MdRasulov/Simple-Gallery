@@ -43,14 +43,19 @@
    outline: none;
 }
 
-.header__search-bar i:hover {
+.header__search-bar button:hover {
    cursor: pointer;
 }
 
-.header__search-bar i > img {
+.header__search-bar button {
    position: absolute;
    top: 15%;
    right: 3%;
 
+   border: none;
+   background: none;
+}
+
+.header__search-bar img {
    width: min(5vw, 2rem);
 }
