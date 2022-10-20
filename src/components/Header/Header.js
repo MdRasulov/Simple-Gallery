@@ -1,16 +1,18 @@
 import { useState } from 'react';
-// import AnchorLink from 'react-anchor-link-smooth-scroll';
 import './header.css';
 
-const Header = ({ fetch }) => {
+const Header = ({ fetch, items }) => {
    const [inputValue, SetInputValue] = useState('');
 
    const searchFunction = e => {
       e.preventDefault();
-      fetch(
-         `https://api.unsplash.com/search/photos/?query=${inputValue}&per_page=20&client_id=${process.env.REACT_APP_API_KEY}`
-      );
-      SetInputValue('');
+      items.length = 0;
+      if (inputValue !== '') {
+         fetch(
+            `https://api.unsplash.com/search/photos/?query=${inputValue}&per_page=30&client_id=${process.env.REACT_APP_API_KEY}`
+         );
+         SetInputValue('');
+      }
    };
 
    return (

@@ -62,7 +62,7 @@ const Gallery = ({ fetch, items, loading, err }) => {
                   </div>
                ))}
          </div>
-         <div className='random__button'>
+         <div className='body__button-more'>
             <button
                onClick={() => {
                   if (randomBtn) {

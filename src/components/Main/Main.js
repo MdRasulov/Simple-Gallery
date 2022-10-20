@@ -1,5 +1,5 @@
-import Header from '../Header/Header.js';
 import { useState } from 'react';
+import Header from '../Header/Header.js';
 import Gallery from '../Gallery/Gallery.js';
 
 const Main = () => {
@@ -16,21 +16,23 @@ const Main = () => {
             return response.json();
          })
          .then(data => {
-            setItems([...items, ...data]);
+            if (!Array.isArray(data)) {
+               setItems([...items, ...data.results]);
+            } else {
+               setItems([...items, ...data]);
+            }
             setLoading(false);
             setErr(null);
          })
          .catch(err => {
-            if (err.name !== 'AbortError') {
-               setErr(err.message);
-               setLoading(false);
-            }
+            setErr(err.message);
+            setLoading(false);
          });
    };
 
    return (
       <div className='main'>
-         <Header fetch={fetchFunction} />
+         <Header fetch={fetchFunction} items={items} />
          <Gallery
             fetch={fetchFunction}
             items={items}

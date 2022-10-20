@@ -12,7 +12,6 @@
 }
 
 .header__search-bar {
-   display: flex;
    position: relative;
    background-color: #fff;
    border: none;
@@ -32,6 +31,11 @@
    text-align: center;
 }
 
+.header__search-bar form {
+   display: flex;
+   width: 100%;
+}
+
 .header__search-bar input {
    margin: 0.2rem;
    width: 100%;
@@ -39,7 +43,8 @@
    border: none;
 }
 
-.header__search-bar input:focus {
+.header__search-bar input,
+.header__search-bar button:focus {
    outline: none;
 }
 
