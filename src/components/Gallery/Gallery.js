@@ -1,33 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import LogicContext from '../../context/LogicContext';
 import './gallery.css';
 
-const Gallery = ({ fetch, items, loading, err }) => {
-   // useEffect(() => {
-   //    loadLatest();
-   // }, []);
+const Gallery = () => {
+   const {
+      loadLatest,
+      loadRandom,
+      searchFunction,
+      items,
+      loading,
+      err,
+      randomBtn,
+      latestBtn,
+      searchBtn,
+      pageNum,
+   } = useContext(LogicContext);
 
-   const [randomBtn, setRandomBtn] = useState(false);
-   const [latestBtn, setLatestBtn] = useState(false);
-   const [pageNumber, setPageNumber] = useState(1);
-
-   const loadRandom = () => {
-      fetch(
-         `https://api.unsplash.com/photos/random/?client_id=${process.env.REACT_APP_API_KEY}&count=30`
-      );
-
-      setRandomBtn(true);
-      setLatestBtn(false);
-   };
-
-   const loadLatest = () => {
-      fetch(
-         `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`
-      );
-
-      setPageNumber(pageNumber + 1);
-      setRandomBtn(false);
-      setLatestBtn(true);
-   };
+   useEffect(() => {
+      loadLatest();
+   }, []);
 
    return (
       <div className='body' id='body-id'>
@@ -36,6 +27,7 @@ const Gallery = ({ fetch, items, loading, err }) => {
                className={`body__button --${latestBtn ? 'active' : ''}`}
                onClick={() => {
                   items.length = 0;
+                  pageNum.current = 1;
                   loadLatest();
                }}
             >
@@ -46,15 +38,28 @@ const Gallery = ({ fetch, items, loading, err }) => {
                onClick={() => {
                   items.length = 0;
                   loadRandom();
-                  setPageNumber(1);
                }}
             >
                Random
             </button>
          </div>
          <div className='body__galary'>
-            {loading && <div className='body__loading'>Loading.....</div>}
-            {err && <div>{err}</div>}
+            {loading && (
+               <div className='lds-facebook'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+               </div>
+            )}
+            {err && (
+               <div className='body__error'>
+                  <img
+                     alt='error'
+                     src={require('../../assets/error-icon.png')}
+                  ></img>
+                  <p>{err}</p>
+               </div>
+            )}
             {items &&
                items.map(item => (
                   <div className='body__img-container' key={item.id}>
@@ -62,13 +67,19 @@ const Gallery = ({ fetch, items, loading, err }) => {
                   </div>
                ))}
          </div>
-         <div className='body__button-more'>
+         <div
+            className={`body__button-more ${
+               err || loading ? 'btn-disable' : ''
+            }`}
+         >
             <button
                onClick={() => {
                   if (randomBtn) {
                      loadRandom();
                   } else if (latestBtn) {
                      loadLatest();
+                  } else if (searchBtn) {
+                     searchFunction();
                   }
                }}
             >

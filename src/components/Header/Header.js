@@ -1,18 +1,18 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import LogicContext from '../../context/LogicContext';
 import './header.css';
 
-const Header = ({ fetch, items }) => {
-   const [inputValue, SetInputValue] = useState('');
+const Header = () => {
+   const { searchFunction, setInputValue, pageNum, items } =
+      useContext(LogicContext);
 
-   const searchFunction = e => {
-      e.preventDefault();
+   const [input, setInput] = useState('');
+
+   const submitFunction = e => {
       items.length = 0;
-      if (inputValue !== '') {
-         fetch(
-            `https://api.unsplash.com/search/photos/?query=${inputValue}&per_page=30&client_id=${process.env.REACT_APP_API_KEY}`
-         );
-         SetInputValue('');
-      }
+      pageNum.current = 1;
+      searchFunction(e);
+      setInput('');
    };
 
    return (
@@ -21,13 +21,19 @@ const Header = ({ fetch, items }) => {
             <h1>Huge Collection of High Resolution Wallpapers</h1>
          </div>
          <div className='header__search-bar'>
-            <form onSubmit={searchFunction}>
+            <form
+               onSubmit={e => {
+                  submitFunction(e);
+               }}
+            >
                <input
                   type='text'
+                  required
                   placeholder='Search for images'
-                  value={inputValue}
+                  value={input}
                   onChange={e => {
-                     SetInputValue(e.target.value);
+                     setInputValue(e.target.value);
+                     setInput(e.target.value);
                   }}
                />
                <button type='submit'>
