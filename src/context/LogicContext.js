@@ -4,12 +4,14 @@ const LogicContext = createContext();
 
 export const LogicProvider = ({ children }) => {
    const [items, setItems] = useState([]);
+   const [item, setItem] = useState([]);
    const [loading, setLoading] = useState(true);
    const [err, setErr] = useState(null);
 
    const [randomBtn, setRandomBtn] = useState(false);
    const [latestBtn, setLatestBtn] = useState(false);
    const [searchBtn, setSearchBtn] = useState(false);
+   const [modal, setModal] = useState(false);
    const pageNum = useRef(1);
 
    const [inputValue, setInputValue] = useState('');
@@ -67,9 +69,9 @@ export const LogicProvider = ({ children }) => {
          e.preventDefault();
       }
       fetchFunction(
-         `https://api.unsplash.com/search/photos/?query=${inputValue}&page=${pageNum.current}&client_id=${process.env.REACT_APP_API_KEY}`
+         `https://api.unsplash.com/search/photos/?query=${inputValue}&page=${pageNum.current}&per_page=20&client_id=${process.env.REACT_APP_API_KEY}`
       );
-      pageNum.current = pageNum.current + 1;
+      pageNum.current = pageNum.current + 2;
       setSearchBtn(true);
       setRandomBtn(false);
       setLatestBtn(false);
@@ -92,6 +94,10 @@ export const LogicProvider = ({ children }) => {
             setInputValue,
             searchBtn,
             pageNum,
+            item,
+            setItem,
+            modal,
+            setModal,
          }}
       >
          {children}

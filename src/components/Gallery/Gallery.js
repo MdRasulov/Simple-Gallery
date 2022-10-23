@@ -1,5 +1,7 @@
 import { useContext, useEffect } from 'react';
 import LogicContext from '../../context/LogicContext';
+import ImageRender from '../ImageRender/ImageRender';
+import Modal from '../Modal/Modal';
 import './gallery.css';
 
 const Gallery = () => {
@@ -14,6 +16,7 @@ const Gallery = () => {
       latestBtn,
       searchBtn,
       pageNum,
+      modal,
    } = useContext(LogicContext);
 
    useEffect(() => {
@@ -43,29 +46,8 @@ const Gallery = () => {
                Random
             </button>
          </div>
-         <div className='body__galary'>
-            {loading && (
-               <div className='lds-facebook'>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-               </div>
-            )}
-            {err && (
-               <div className='body__error'>
-                  <img
-                     alt='error'
-                     src={require('../../assets/error-icon.png')}
-                  ></img>
-                  <p>{err}</p>
-               </div>
-            )}
-            {items &&
-               items.map(item => (
-                  <div className='body__img-container' key={item.id}>
-                     <img src={item.urls.regular} alt='unsplash' />
-                  </div>
-               ))}
+         <div className='images'>
+            <ImageRender />
          </div>
          <div
             className={`body__button-more ${
@@ -86,6 +68,7 @@ const Gallery = () => {
                More
             </button>
          </div>
+         {modal && <Modal />}
       </div>
    );
 };
