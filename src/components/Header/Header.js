@@ -18,7 +18,7 @@ const Header = () => {
    return (
       <div className='header'>
          <div className='header__text'>
-            <h1>Huge Collection of High Resolution Wallpapers sssss</h1>
+            <h1>Huge Collection of High Resolution Wallpapers</h1>
          </div>
          <div className='header__search-bar'>
             <form

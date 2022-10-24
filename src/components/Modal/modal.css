@@ -181,6 +181,10 @@
       border-radius: 0.8rem;
       overflow: hidden;
    }
+   .modal__info {
+      padding-left: 0;
+      padding-right: 0;
+   }
    .modal__user-image {
       max-width: 3.5rem;
       max-height: 3.5rem;
@@ -198,5 +202,13 @@
    .modal__likes img {
       max-width: 1.8rem;
       max-height: 1.8rem;
+   }
+}
+
+@media screen and (max-width: 350px) {
+   .modal__container {
+      width: 90vw;
+      height: 85vh;
+      padding: 0.3rem;
    }
 }
