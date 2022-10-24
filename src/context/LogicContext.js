@@ -13,6 +13,7 @@ export const LogicProvider = ({ children }) => {
    const [searchBtn, setSearchBtn] = useState(false);
    const [modal, setModal] = useState(false);
    const pageNum = useRef(1);
+   const ref = useRef(null);
 
    const [inputValue, setInputValue] = useState('');
 
@@ -98,6 +99,7 @@ export const LogicProvider = ({ children }) => {
             setItem,
             modal,
             setModal,
+            ref,
          }}
       >
          {children}

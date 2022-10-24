@@ -3,9 +3,8 @@ import LogicContext from '../../context/LogicContext';
 import './header.css';
 
 const Header = () => {
-   const { searchFunction, setInputValue, pageNum, items } =
+   const { searchFunction, setInputValue, pageNum, items, ref } =
       useContext(LogicContext);
-
    const [input, setInput] = useState('');
 
    const submitFunction = e => {
@@ -13,6 +12,7 @@ const Header = () => {
       pageNum.current = 1;
       searchFunction(e);
       setInput('');
+      ref.current?.scrollIntoView({ behavior: 'smooth' });
    };
 
    return (

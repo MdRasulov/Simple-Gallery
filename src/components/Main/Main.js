@@ -1,6 +1,7 @@
 import Header from '../Header/Header.js';
 import Gallery from '../Gallery/Gallery.js';
 import { LogicProvider } from '../../context/LogicContext.js';
+import { Route, Routes } from 'react-router';
 
 const Main = () => {
    return (

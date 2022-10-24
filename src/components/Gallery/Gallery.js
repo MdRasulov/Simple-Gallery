@@ -17,6 +17,7 @@ const Gallery = () => {
       searchBtn,
       pageNum,
       modal,
+      ref,
    } = useContext(LogicContext);
 
    useEffect(() => {
@@ -24,7 +25,7 @@ const Gallery = () => {
    }, []);
 
    return (
-      <div className='body' id='body-id'>
+      <div className='body' ref={ref}>
          <div className='body__buttons'>
             <button
                className={`body__button --${latestBtn ? 'active' : ''}`}
