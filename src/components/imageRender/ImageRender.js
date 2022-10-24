@@ -27,15 +27,16 @@ const ImageRender = () => {
          {items &&
             items.map((item, index) => (
                <div className='images__container' key={index}>
-                  <img
-                     src={item.urls.regular}
-                     alt='unsplash'
-                     className='image'
-                     onClick={() => {
-                        setModal(true);
-                        setItem(item);
-                     }}
-                  />
+                  <div className='image'>
+                     <img
+                        src={item.urls.regular}
+                        alt='unsplash'
+                        onClick={() => {
+                           setModal(true);
+                           setItem(item);
+                        }}
+                     />
+                  </div>
                   <div className='image__info'>
                      <div className='image__user'>
                         <div className='image__user-image'>

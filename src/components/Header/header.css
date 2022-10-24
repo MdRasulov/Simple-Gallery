@@ -19,12 +19,11 @@
    font-size: 1rem;
    border-radius: 1.2rem;
    padding: 0.2rem;
-   width: min(60vw, 30rem);
+   width: min(80vw, 35rem);
 }
 
 .header__text {
-   max-width: 60%;
-   margin-inline: auto;
+   width: 55vw;
    margin-bottom: 1rem;
 }
 
@@ -57,13 +56,36 @@
 
 .header__search-bar button {
    position: absolute;
-   top: 15%;
-   right: 3%;
+   top: 0.4rem;
+   right: 0.8rem;
 
    border: none;
    background: none;
+   width: 6%;
 }
 
 .header__search-bar img {
-   width: min(5vw, 2rem);
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+
+/* ----------------- Media Querries --------------------- */
+
+@media screen and (max-width: 450px) {
+   .header {
+      height: 100vh;
+   }
+   .header__text {
+      width: 75vw;
+   }
+   .header__text h1 {
+      font-size: 1.8rem;
+   }
+   .header__search-bar input {
+      padding: 0.25rem 1.5rem;
+   }
+   .header__search-bar button {
+      width: 8%;
+   }
 }
