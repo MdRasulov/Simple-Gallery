@@ -1,14 +1,29 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import LogicContext from '../../context/LogicContext';
 import format from 'date-fns/format';
 import './modal.css';
 
 const Modal = () => {
    const { item, setModal } = useContext(LogicContext);
+   const refModal = useRef();
+
+   useEffect(() => {
+      const handler = e => {
+         if (!refModal.current.contains(e.target)) {
+            setModal(false);
+         }
+      };
+
+      document.addEventListener('mousedown', handler);
+
+      return () => {
+         document.removeEventListener('mousedown', handler);
+      };
+   });
 
    return (
       <div className='modal'>
-         <div className='modal__container'>
+         <div className='modal__container' ref={refModal}>
             <div className='modal__buttons'>
                <div className='modal__exit'>
                   <button

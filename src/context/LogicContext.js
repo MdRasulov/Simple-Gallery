@@ -100,6 +100,7 @@ export const LogicProvider = ({ children }) => {
             modal,
             setModal,
             ref,
+            setLoading,
          }}
       >
          {children}

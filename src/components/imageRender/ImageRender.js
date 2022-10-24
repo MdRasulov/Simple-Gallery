@@ -5,7 +5,6 @@ import './imageRender.css';
 
 const ImageRender = () => {
    const { items, loading, err, setModal, setItem } = useContext(LogicContext);
-
    return (
       <>
          {loading && (
@@ -53,10 +52,12 @@ const ImageRender = () => {
                         </div>
                      </div>
                      <div className='image__likes'>
-                        <img
-                           src={require('../../assets/heard-icon.png')}
-                           alt='like icon'
-                        />
+                        <div className='image__likes-img'>
+                           <img
+                              src={require('../../assets/heard-icon.png')}
+                              alt='like icon'
+                           />
+                        </div>
                         <p>{item.likes}</p>
                      </div>
                   </div>

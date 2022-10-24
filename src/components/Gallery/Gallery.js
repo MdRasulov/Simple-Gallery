@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import LogicContext from '../../context/LogicContext';
 import ImageRender from '../ImageRender/ImageRender';
 import Modal from '../Modal/Modal';
@@ -18,6 +18,7 @@ const Gallery = () => {
       pageNum,
       modal,
       ref,
+      setLoading,
    } = useContext(LogicContext);
 
    useEffect(() => {
@@ -32,6 +33,7 @@ const Gallery = () => {
                onClick={() => {
                   items.length = 0;
                   pageNum.current = 1;
+                  setLoading(true);
                   loadLatest();
                }}
             >
@@ -41,6 +43,7 @@ const Gallery = () => {
                className={`body__button --${randomBtn ? 'active' : ''}`}
                onClick={() => {
                   items.length = 0;
+                  setLoading(true);
                   loadRandom();
                }}
             >
