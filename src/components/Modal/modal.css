@@ -205,7 +205,7 @@
    }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 380px) {
    .modal__container {
       width: 90vw;
       height: 85vh;
