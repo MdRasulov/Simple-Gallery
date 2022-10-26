@@ -74,6 +74,7 @@ const Gallery = () => {
                   } else if (searchBtn) {
                      searchFunction();
                   }
+                  setLoading(true);
                }}
             >
                More

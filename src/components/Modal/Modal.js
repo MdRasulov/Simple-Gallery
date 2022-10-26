@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import LogicContext from '../../context/LogicContext';
 import format from 'date-fns/format';
@@ -6,8 +6,11 @@ import './modal.css';
 
 const Modal = () => {
    const { item, setModal } = useContext(LogicContext);
+   const [fullScreen, setFullScreen] = useState(false);
+   const [modalLoadig, SetModalLoading] = useState(false);
    const refModal = useRef();
 
+   //closing modal on click outside
    useEffect(() => {
       const handler = e => {
          if (!refModal.current.contains(e.target)) {
@@ -53,8 +56,14 @@ const Modal = () => {
                   </a>
                </div>
             </div>
-            <div className='modal__image'>
-               <img src={item.urls.regular} alt='' />
+            <div
+               className='modal__image'
+               onClick={() => {
+                  setFullScreen(true);
+                  SetModalLoading(true);
+               }}
+            >
+               <img src={item.urls.regular} alt='modal' />
             </div>
             <div className='modal__info'>
                <div className='modal__user'>
@@ -80,6 +89,43 @@ const Modal = () => {
                </div>
             </div>
          </motion.div>
+         {fullScreen && (
+            <motion.div
+               initial={{ scale: 0.5 }}
+               animate={{ scale: 1 }}
+               className='modal__fullScreen-image'
+               onClick={() => {
+                  setFullScreen(false);
+                  SetModalLoading(false);
+               }}
+            >
+               <img
+                  src={item.urls.full}
+                  alt='fullscreen'
+                  onLoad={() => {
+                     SetModalLoading(false);
+                  }}
+               />
+            </motion.div>
+         )}
+         {modalLoadig && (
+            <div className='modal__loading'>
+               <div class='lds-spinner'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+               </div>
+            </div>
+         )}
       </div>
    );
 };
