@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import LogicContext from '../../context/LogicContext';
+import { motion } from 'framer-motion';
 import './header.css';
 
 const Header = () => {
@@ -18,9 +19,20 @@ const Header = () => {
    return (
       <div className='header'>
          <div className='header__text'>
-            <h1>Huge Collection of High Resolution Wallpapers</h1>
+            <motion.h1
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ duration: 2 }}
+            >
+               Huge Collection of High Resolution Wallpapers
+            </motion.h1>
          </div>
-         <div className='header__search-bar'>
+         <motion.div
+            initial={{ opacity: 0, y: '15vh' }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className='header__search-bar'
+         >
             <form
                onSubmit={e => {
                   submitFunction(e);
@@ -40,7 +52,7 @@ const Header = () => {
                   <img src={require('../../assets/search-icon.png')} alt='' />
                </button>
             </form>
-         </div>
+         </motion.div>
       </div>
    );
 };

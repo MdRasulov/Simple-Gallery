@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import LogicContext from '../../context/LogicContext';
 import format from 'date-fns/format';
 import './modal.css';
@@ -23,7 +24,12 @@ const Modal = () => {
 
    return (
       <div className='modal'>
-         <div className='modal__container' ref={refModal}>
+         <motion.div
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            className='modal__container'
+            ref={refModal}
+         >
             <div className='modal__buttons'>
                <div className='modal__exit'>
                   <button
@@ -73,7 +79,7 @@ const Modal = () => {
                   <p>{item.likes}</p>
                </div>
             </div>
-         </div>
+         </motion.div>
       </div>
    );
 };

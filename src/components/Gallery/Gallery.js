@@ -1,6 +1,7 @@
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useEffect } from 'react';
 import LogicContext from '../../context/LogicContext';
 import ImageRender from '../ImageRender/ImageRender';
+import { motion } from 'framer-motion';
 import Modal from '../Modal/Modal';
 import './gallery.css';
 
@@ -21,14 +22,16 @@ const Gallery = () => {
       setLoading,
    } = useContext(LogicContext);
 
-   useEffect(() => {
-      loadLatest();
-   }, []);
+   // useEffect(() => {
+   //    loadLatest();
+   // }, []);
 
    return (
       <div className='body' ref={ref}>
          <div className='body__buttons'>
-            <button
+            <motion.button
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.8 }}
                className={`body__button --${latestBtn ? 'active' : ''}`}
                onClick={() => {
                   items.length = 0;
@@ -38,8 +41,10 @@ const Gallery = () => {
                }}
             >
                Latest
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.8 }}
                className={`body__button --${randomBtn ? 'active' : ''}`}
                onClick={() => {
                   items.length = 0;
@@ -48,7 +53,7 @@ const Gallery = () => {
                }}
             >
                Random
-            </button>
+            </motion.button>
          </div>
          <div className='images'>
             <ImageRender />
@@ -58,7 +63,9 @@ const Gallery = () => {
                err || loading ? 'btn-disable' : ''
             }`}
          >
-            <button
+            <motion.button
+               whileHover={{ scale: 1.1 }}
+               whileTap={{ scale: 0.8 }}
                onClick={() => {
                   if (randomBtn) {
                      loadRandom();
@@ -70,7 +77,7 @@ const Gallery = () => {
                }}
             >
                More
-            </button>
+            </motion.button>
          </div>
          {modal && <Modal />}
       </div>

@@ -19,7 +19,7 @@
    border: none;
    background: none;
    cursor: pointer;
-   transition: all 0.3s ease;
+   /* transition: all 0.3s ease; */
    border-radius: 0.5rem;
    background-color: #fff;
 }
@@ -50,7 +50,7 @@
    background-color: #fff;
    font-weight: 500;
 
-   transition: all 0.4s ease;
+   /* transition: all 0.4s ease; */
 }
 
 .body__button-more button:hover {

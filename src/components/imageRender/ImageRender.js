@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import LogicContext from '../../context/LogicContext';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
 import './imageRender.css';
 
 const ImageRender = () => {
@@ -15,17 +16,27 @@ const ImageRender = () => {
             </div>
          )}
          {err && (
-            <div className='images__error'>
+            <motion.div
+               initial={{ x: '-100vw' }}
+               animate={{ x: 0 }}
+               className='images__error'
+            >
                <img
                   alt='error'
                   src={require('../../assets/error-icon.png')}
                ></img>
                <p>{err}</p>
-            </div>
+            </motion.div>
          )}
          {items &&
             items.map((item, index) => (
-               <div className='images__container' key={index}>
+               <motion.div
+                  initial={{ y: '100vh' }}
+                  animate={{ y: 0 }}
+                  whileHover={{ scale: 1.03, zIndex: 2 }}
+                  className='images__container'
+                  key={index}
+               >
                   <div className='image'>
                      <img
                         src={item.urls.regular}
@@ -61,7 +72,7 @@ const ImageRender = () => {
                         <p>{item.likes}</p>
                      </div>
                   </div>
-               </div>
+               </motion.div>
             ))}
       </>
    );
