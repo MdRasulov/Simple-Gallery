@@ -22,9 +22,9 @@ const Gallery = () => {
       setLoading,
    } = useContext(LogicContext);
 
-   // useEffect(() => {
-   //    loadLatest();
-   // }, []);
+   useEffect(() => {
+      loadLatest();
+   }, []);
 
    return (
       <div className='body' ref={ref}>
