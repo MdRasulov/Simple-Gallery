@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import './header.css';
 
 const Header = () => {
-   const { searchFunction, setInputValue, pageNum, items, ref } =
+   const { searchFunction, setInputValue, pageNum, items, ref, setLoading } =
       useContext(LogicContext);
    const [input, setInput] = useState('');
 
@@ -14,6 +14,7 @@ const Header = () => {
       searchFunction(e);
       setInput('');
       ref.current?.scrollIntoView({ behavior: 'smooth' });
+      setLoading(true);
    };
 
    return (

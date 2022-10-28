@@ -100,7 +100,7 @@ const Modal = () => {
                }}
             >
                <img
-                  src={item.urls.full}
+                  src={item.urls.raw}
                   alt='fullscreen'
                   onLoad={() => {
                      SetModalLoading(false);
@@ -110,7 +110,7 @@ const Modal = () => {
          )}
          {modalLoadig && (
             <div className='modal__loading'>
-               <div class='lds-spinner'>
+               <div className='lds-spinner'>
                   <div></div>
                   <div></div>
                   <div></div>
